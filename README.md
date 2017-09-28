@@ -138,6 +138,20 @@ private DesktopPeer peer;
     }
 ```
 #### Abstract Factory 
+* java.util.Calendar.getInstance()
+* java.util.Arrays.asList();
+* java.util.ResourceBundle.getBundle()
+* java.sql.DriverManager.getConnection()
+* java.sql.Statement.executeQuery()
+* java.text.NumberFormat.getInstance()
+* java.lang.management.ManagementFactory
+* java.nio.charset.Charset.forName()
+* javax.xml.parsers.DocumentBuilderFactory.newInstance()
+* javax.xml.transform.TransformerFactory.newInstance()
+* javax.xml.parsers.DocumentBuilderFactory.newInstance()
+* javax.xml.xpath.XPathFactory.newInstance()
+* java.net.URLStreamHandlerFactory.createURLStreamHandler(String) returns singleton object per protocol
+
 #### Builder
 #### Prototype 
 ### Structural
