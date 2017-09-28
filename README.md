@@ -35,7 +35,7 @@ private DesktopPeer peer;
     private Desktop() {
         peer = Toolkit.getDefaultToolkit().createDesktopPeer(this);
     }
- /**
+    /**
      * Returns the <code>Desktop</code> instance of the current
      * browser context.  On some platforms the Desktop API may not be
      * supported; use the {@link #isDesktopSupported} method to
@@ -71,7 +71,7 @@ private DesktopPeer peer;
 #### Factory
 * java.lang.Object.toString()
 ```
-/**
+    /**
      * Returns a string representation of the object. In general, the
      * {@code toString} method returns a string that
      * "textually represents" this object. The result should
@@ -99,7 +99,7 @@ private DesktopPeer peer;
 ```
 * java.lang.Class.forName()
 ```
- /**
+    /**
      * Returns the {@code Class} object associated with the class or
      * interface with the given string name.  Invoking this method is
      * equivalent to:
@@ -139,6 +139,21 @@ private DesktopPeer peer;
 ```
 #### Abstract Factory 
 * java.util.Calendar.getInstance()
+```
+    /**
+     * Gets a calendar using the default time zone and locale. The
+     * <code>Calendar</code> returned is based on the current time
+     * in the default time zone with the default
+     * {@link Locale.Category#FORMAT FORMAT} locale.
+     *
+     * @return a Calendar.
+     */
+    public static Calendar getInstance()
+    {
+        return createCalendar(TimeZone.getDefault(), Locale.getDefault(Locale.Category.FORMAT));
+    }
+
+```
 * java.util.Arrays.asList();
 * java.util.ResourceBundle.getBundle()
 * java.sql.DriverManager.getConnection()
