@@ -2,7 +2,7 @@
 * Design Pattern , from the book 'Head-First-Design-Pattern'. 
 * From the course "From the course: Programming Foundations: Design Patterns", provided by LinkedIn Learning.
 
-## Design Pattern In Java
+## Design Pattern In Java SE 8  [1.8.0_91]
 ### Creational
 #### Singleton
 * java.lang.Runtime.getRuntime()
@@ -69,6 +69,74 @@ private DesktopPeer peer;
 ```
 
 #### Factory
+* java.lang.Object.toString()
+```
+/**
+     * Returns a string representation of the object. In general, the
+     * {@code toString} method returns a string that
+     * "textually represents" this object. The result should
+     * be a concise but informative representation that is easy for a
+     * person to read.
+     * It is recommended that all subclasses override this method.
+     * <p>
+     * The {@code toString} method for class {@code Object}
+     * returns a string consisting of the name of the class of which the
+     * object is an instance, the at-sign character `{@code @}', and
+     * the unsigned hexadecimal representation of the hash code of the
+     * object. In other words, this method returns a string equal to the
+     * value of:
+     * <blockquote>
+     * <pre>
+     * getClass().getName() + '@' + Integer.toHexString(hashCode())
+     * </pre></blockquote>
+     *
+     * @return  a string representation of the object.
+     */
+    public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
+```
+* java.lang.Class.forName()
+```
+ /**
+     * Returns the {@code Class} object associated with the class or
+     * interface with the given string name.  Invoking this method is
+     * equivalent to:
+     *
+     * <blockquote>
+     *  {@code Class.forName(className, true, currentLoader)}
+     * </blockquote>
+     *
+     * where {@code currentLoader} denotes the defining class loader of
+     * the current class.
+     *
+     * <p> For example, the following code fragment returns the
+     * runtime {@code Class} descriptor for the class named
+     * {@code java.lang.Thread}:
+     *
+     * <blockquote>
+     *   {@code Class t = Class.forName("java.lang.Thread")}
+     * </blockquote>
+     * <p>
+     * A call to {@code forName("X")} causes the class named
+     * {@code X} to be initialized.
+     *
+     * @param      className   the fully qualified name of the desired class.
+     * @return     the {@code Class} object for the class with the
+     *             specified name.
+     * @exception LinkageError if the linkage fails
+     * @exception ExceptionInInitializerError if the initialization provoked
+     *            by this method fails
+     * @exception ClassNotFoundException if the class cannot be located
+     */
+    @CallerSensitive
+    public static Class<?> forName(String className)
+                throws ClassNotFoundException {
+        Class<?> caller = Reflection.getCallerClass();
+        return forName0(className, true, ClassLoader.getClassLoader(caller), caller);
+    }
+```
 #### Abstract Factory 
 #### Builder
 #### Prototype 
