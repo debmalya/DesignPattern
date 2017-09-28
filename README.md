@@ -168,6 +168,12 @@ private DesktopPeer peer;
 * java.net.URLStreamHandlerFactory.createURLStreamHandler(String) returns singleton object per protocol
 
 #### Builder
+* java.lang.StringBuilder.append()
+* java.lang.StringBuffer.append()
+* java.nio.ByteBuffer.put() (also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer, DoubleBuffer)
+* javax.swing.GroupLayout.group.addComponent()
+* all implements java.lang.Appendable()
+
 #### Prototype 
 ### Structural
 ### Behavioral
