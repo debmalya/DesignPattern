@@ -251,11 +251,13 @@ private DesktopPeer peer;
 #### Bridge
 * LinkedHashMap - which returns an unmodifiable linked map which doesn't clone the items but uses them. 
 * java.util.Collections.newSetFromMap()
+
 #### Composite
 * java.util.Map.putAll()
 * java.util.List.addAll()
 * java.util.Set.addAll()
 * java.nio.ByteBuffer.put(buffer)
+
 #### Decorator
 * java.io.InputStream, OutputStream, Reader, Writer, 
 * java.util.Collections.synchronizedXXX() and unmodifiableXXX()
@@ -264,10 +266,56 @@ private DesktopPeer peer;
 * javax.faces.context.FacesContext
 * Flyweight
 * java.lang.Integer.valueOf()
+
 #### Proxy
 * java.lang.reflect.Proxy
 
 ### Behavioral
+#### Chain of Responsibility 
+* java.util.logging.Logger.log()
+* javax.servlet.Filter.doFilter()
+#### Command
+* All implementation of java.lang.Runnable  javax.swing.Action
+#### Interpreter
+* java.util.Pattern
+* java.text.Normalizer
+* javax.text.Format
+* javax.el.ELResolver
+#### Iterator
+* java.util.Iterator
+* java.util.Enumeration
+
+#### Mediator
+* java.util.Timer
+* java.util.concurrent.Executor.execute
+* java.util.concurrent.ExecutorService (the invokeXXX and submit methods)
+* java.lang.reflect.Method.invoke
+#### Momento
+* java.util.Date
+* java.io.Serializable
+#### Observer (Publish/Subscriber)
+* java.util.Observer
+* java.util.Observable
+* java.util.EventListener
+* javax.servlet.http.HttpSessionBindingListener
+* javax.servlet.http.HttpSessionAttributeListener
+* javax.faces.event.PhaseListener
+#### State
+* All implementations of java.util.Iterator
+* javax.faces.LifeCycle.execute
+#### Strategy
+* java.util.Comparator.compare(), executed by among others Collections.sort()
+* javax.servlet.http.HttpServlet the service and doXXX() methods
+* javax.servlet.Filter.doFilter
+
+#### Template
+* all non abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader
+* all non abstract methods of java.util.AbstractList, java.util.AbstractSet, java.util.AbstractMap.
+#### Visitor
+* javax.lang.model.element.AnnotationValue
+* javax.lang.model.element.Element and ElementVisitor
+* javax.lang.model.type.TypeMirror  and TypeVisitor
+
 #### Marker Interface / Tagging interface Pattern
 * Serializable, Cloneable, 
 
