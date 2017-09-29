@@ -194,6 +194,46 @@ private DesktopPeer peer;
 
 #### Builder
 * java.lang.StringBuilder.append()
+```
+    @Override
+    public StringBuilder append(Object obj) {
+        return append(String.valueOf(obj));
+    }
+
+    @Override
+    public StringBuilder append(String str) {
+        super.append(str);
+        return this;
+    }
+    
+    /**
+     * Appends the specified string to this character sequence.
+     * <p>
+     * The characters of the {@code String} argument are appended, in
+     * order, increasing the length of this sequence by the length of the
+     * argument. If {@code str} is {@code null}, then the four
+     * characters {@code "null"} are appended.
+     * <p>
+     * Let <i>n</i> be the length of this character sequence just prior to
+     * execution of the {@code append} method. Then the character at
+     * index <i>k</i> in the new character sequence is equal to the character
+     * at index <i>k</i> in the old character sequence, if <i>k</i> is less
+     * than <i>n</i>; otherwise, it is equal to the character at index
+     * <i>k-n</i> in the argument {@code str}.
+     *
+     * @param   str   a string.
+     * @return  a reference to this object.
+     */
+    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }    
+```
 * java.lang.StringBuffer.append()
 * java.nio.ByteBuffer.put() (also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer, DoubleBuffer)
 * javax.swing.GroupLayout.group.addComponent()
@@ -201,9 +241,32 @@ private DesktopPeer peer;
 
 #### Prototype 
 * java.lang.Object.clone()
-```
-```
+
 ### Structural
+*Adapter
+** java.io.InputStreamReader(InputStream)
+** java.io.OutputStreamWriter(OutputStream)
+** javax.xml.bind.annotation.adapters.XmlAdapter.marshal()
+
+* Bridge
+** LinkedHashMap - which returns an unmodifiable linked map which doesn't clone the items but uses them. 
+** java.util.Collections.newSetFromMap()
+* Composite
+** java.util.Map.putAll()
+** java.util.List.addAll()
+** java.util.Set.addAll()
+** java.nio.ByteBuffer.put(buffer)
+* Decorator
+** java.io.InputStream, OutputStream, Reader, Writer, 
+** java.util.Collections.synchronizedXXX() and unmodifiableXXX()
+
+* Facade
+** javax.faces.context.FacesContext
+* Flyweight
+** java.lang.Integer.valueOf()
+* Proxy
+** java.lang.reflect.Proxy
+
 ### Behavioral
 * Marker Interface / Tagging interface Pattern
 ** Serializable, Cloneable, 
