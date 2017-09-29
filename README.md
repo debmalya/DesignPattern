@@ -243,32 +243,32 @@ private DesktopPeer peer;
 * java.lang.Object.clone()
 
 ### Structural
-*Adapter
-** java.io.InputStreamReader(InputStream)
-** java.io.OutputStreamWriter(OutputStream)
-** javax.xml.bind.annotation.adapters.XmlAdapter.marshal()
+#### Adapter
+* java.io.InputStreamReader(InputStream)
+* java.io.OutputStreamWriter(OutputStream)
+* javax.xml.bind.annotation.adapters.XmlAdapter.marshal()
 
-* Bridge
-** LinkedHashMap - which returns an unmodifiable linked map which doesn't clone the items but uses them. 
-** java.util.Collections.newSetFromMap()
-* Composite
-** java.util.Map.putAll()
-** java.util.List.addAll()
-** java.util.Set.addAll()
-** java.nio.ByteBuffer.put(buffer)
-* Decorator
-** java.io.InputStream, OutputStream, Reader, Writer, 
-** java.util.Collections.synchronizedXXX() and unmodifiableXXX()
+#### Bridge
+* LinkedHashMap - which returns an unmodifiable linked map which doesn't clone the items but uses them. 
+* java.util.Collections.newSetFromMap()
+#### Composite
+* java.util.Map.putAll()
+* java.util.List.addAll()
+* java.util.Set.addAll()
+* java.nio.ByteBuffer.put(buffer)
+#### Decorator
+* java.io.InputStream, OutputStream, Reader, Writer, 
+* java.util.Collections.synchronizedXXX() and unmodifiableXXX()
 
-* Facade
-** javax.faces.context.FacesContext
+#### Facade
+* javax.faces.context.FacesContext
 * Flyweight
-** java.lang.Integer.valueOf()
-* Proxy
-** java.lang.reflect.Proxy
+* java.lang.Integer.valueOf()
+#### Proxy
+* java.lang.reflect.Proxy
 
 ### Behavioral
-* Marker Interface / Tagging interface Pattern
-** Serializable, Cloneable, 
+#### Marker Interface / Tagging interface Pattern
+* Serializable, Cloneable, 
 
 
