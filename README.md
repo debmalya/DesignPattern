@@ -342,6 +342,8 @@ Cloned to produce new objects
 
 ** FileInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberInputStream.read()
 
+![GitHub Logo](./docs/img/DecoratorPattern.png)
+
 
 FileInputStream.read() method is defined as 
 ```
