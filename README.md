@@ -340,8 +340,52 @@ Cloned to produce new objects
 * java.io.InputStream, OutputStream, Reader, Writer, 
 * java.util.Collections.synchronizedXXX() and unmodifiableXXX()
 
-** FileInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberReader.read()
+** FileInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberInputStream.read()
+
+
+FileInputStream.read() method is defined as 
 ```
+    /**
+     * Reads a byte of data from this input stream. This method blocks
+     * if no input is yet available.
+     *
+     * @return     the next byte of data, or <code>-1</code> if the end of the
+     *             file is reached.
+     * @exception  IOException  if an I/O error occurs.
+     */
+    public int read() throws IOException {
+        return read0();
+    }
+
+    private native int read0() throws IOException;
+```
+BufferedInputStream.read method
+```
+    /**
+     * See
+     * the general contract of the <code>read</code>
+     * method of <code>InputStream</code>.
+     *
+     * @return     the next byte of data, or <code>-1</code> if the end of the
+     *             stream is reached.
+     * @exception  IOException  if this input stream has been closed by
+     *                          invoking its {@link #close()} method,
+     *                          or an I/O error occurs.
+     * @see        java.io.FilterInputStream#in
+     */
+    public synchronized int read() throws IOException {
+        if (pos >= count) {
+            fill();
+            if (pos >= count)
+                return -1;
+        }
+        return getBufIfOpen()[pos++] & 0xff;
+    }
+```
+
+LineNumberInputStream.read() method
+```
+    
     /**
      * Reads the next byte of data from this input stream. The value
      * byte is returned as an {@code int} in the range
@@ -388,6 +432,14 @@ Cloned to produce new objects
         return c;
     }
 ```
+Here in is defined as 
+```
+    /**
+     * The input stream to be filtered.
+     */
+    protected volatile InputStream in;
+```
+
 
 #### Facade
 * javax.faces.context.FacesContext
