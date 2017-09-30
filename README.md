@@ -340,26 +340,40 @@ Cloned to produce new objects
 * java.io.InputStream, OutputStream, Reader, Writer, 
 * java.util.Collections.synchronizedXXX() and unmodifiableXXX()
 
-** FileInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberInputStream.read()
+** FilterInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberInputStream.read()
 
 ![GitHub Logo](./docs/img/DecoratorPattern.png)
 
 
-FileInputStream.read() method is defined as 
+FilterInputStream.read() method is defined as 
 ```
     /**
-     * Reads a byte of data from this input stream. This method blocks
-     * if no input is yet available.
+     * Reads the next byte of data from this input stream. The value
+     * byte is returned as an <code>int</code> in the range
+     * <code>0</code> to <code>255</code>. If no byte is available
+     * because the end of the stream has been reached, the value
+     * <code>-1</code> is returned. This method blocks until input data
+     * is available, the end of the stream is detected, or an exception
+     * is thrown.
+     * <p>
+     * This method
+     * simply performs <code>in.read()</code> and returns the result.
      *
      * @return     the next byte of data, or <code>-1</code> if the end of the
-     *             file is reached.
+     *             stream is reached.
      * @exception  IOException  if an I/O error occurs.
+     * @see        java.io.FilterInputStream#in
      */
     public int read() throws IOException {
-        return read0();
+        return in.read();
     }
-
-    private native int read0() throws IOException;
+```
+Here in is defined as 
+```
+    /**
+     * The input stream to be filtered.
+     */
+    protected volatile InputStream in;
 ```
 BufferedInputStream.read method
 ```
@@ -387,8 +401,7 @@ BufferedInputStream.read method
 
 LineNumberInputStream.read() method
 ```
-    
-    /**
+      /**
      * Reads the next byte of data from this input stream. The value
      * byte is returned as an {@code int} in the range
      * {@code 0} to {@code 255}. If no byte is available
@@ -434,13 +447,7 @@ LineNumberInputStream.read() method
         return c;
     }
 ```
-Here in is defined as 
-```
-    /**
-     * The input stream to be filtered.
-     */
-    protected volatile InputStream in;
-```
+
 
 
 #### Facade
