@@ -4,7 +4,7 @@
 
 Design pattern is a solution to a problem in a context.
 Context is the situation where design pattern applies.
-Solution a design that resolves the problem.
+Solution is a design that resolves the problem.
 
 ## Design Pattern In Java SE 8  [1.8.0_91]
 ### Creational
