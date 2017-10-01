@@ -17,7 +17,7 @@ Where it is used ?
 * Drivers (Graphics, Database )
 * Preference and registry object.
 
-* java.lang.Runtime.getRuntime()
+##### java.lang.Runtime.getRuntime()
 ```
 private static Runtime currentRuntime = new Runtime();
 
@@ -37,7 +37,7 @@ private static Runtime currentRuntime = new Runtime();
     private Runtime() {}
 
 ```
-* java.awt.Desktop.getDeskTop()
+##### java.awt.Desktop.getDeskTop()
 ```
 private DesktopPeer peer;
 
