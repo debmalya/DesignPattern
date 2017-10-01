@@ -11,6 +11,12 @@ How objects will be created ?
 Only will have one instance of the class across JVM. One JVM only one instance of the class.
 This pattern ensures a class has only one instance, and provides a global access point to it.
 
+Where it is used ?
+* Connection and Thread pool.
+* Logger.
+* Drivers (Graphics, Database )
+* Preference and registry object.
+
 * java.lang.Runtime.getRuntime()
 ```
 private static Runtime currentRuntime = new Runtime();
