@@ -2,6 +2,10 @@
 * Design Pattern , from the book 'Head-First-Design-Pattern'. 
 * From the course "From the course: Programming Foundations: Design Patterns", provided by LinkedIn Learning.
 
+Design pattern is a solution to a problem in a context.
+Context is the situation where design pattern applies.
+Solution a design that resolves the problem.
+
 ## Design Pattern In Java SE 8  [1.8.0_91]
 ### Creational
 How objects will be created ?
@@ -477,14 +481,17 @@ LineNumberInputStream.read() method
 * javax.text.Format
 * javax.el.ELResolver
 #### Iterator
-* java.util.Iterator
-* java.util.Enumeration
+This pattern allows to access elements over collection of complex objects sequentially, without knowing the inner detials of the object.
+
+##### java.util.Iterator
+
+##### java.util.Enumeration
 
 #### Mediator
-* java.util.Timer
-* java.util.concurrent.Executor.execute
-* java.util.concurrent.ExecutorService (the invokeXXX and submit methods)
-* java.lang.reflect.Method.invoke
+##### java.util.Timer
+##### java.util.concurrent.Executor.execute
+##### java.util.concurrent.ExecutorService (the invokeXXX and submit methods)
+##### java.lang.reflect.Method.invoke
 #### Momento
 * java.util.Date
 * java.io.Serializable
@@ -496,8 +503,10 @@ LineNumberInputStream.read() method
 * javax.servlet.http.HttpSessionAttributeListener
 * javax.faces.event.PhaseListener
 #### State
-* All implementations of java.util.Iterator
-* javax.faces.LifeCycle.execute
+Allows an object to change its behaviour when the internal state changes. 
+Using with state constantans, the state machines are implemented. State implemented as an object.
+##### All implementations of java.util.Iterator
+##### javax.faces.LifeCycle.execute
 #### Strategy
 * java.util.Comparator.compare(), executed by among others Collections.sort()
 * javax.servlet.http.HttpServlet the service and doXXX() methods
@@ -514,4 +523,11 @@ LineNumberInputStream.read() method
 #### Marker Interface / Tagging interface Pattern
 * Serializable, Cloneable, 
 
+#### Compound design pattern
+Consists of more than one design pattern
+##### MVC (Model View Controller)
+It's combination of Strategy, Observer, Composite.
+## Design Principles
+* Open closed principle : Open for extension, close for modification. 
+* Program to interface
 
