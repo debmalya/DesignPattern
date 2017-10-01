@@ -9,6 +9,7 @@ How objects will be created ?
 #### Singleton
 
 Only will have one instance of the class across JVM. One JVM only one instance of the class.
+This pattern ensures a class has only one instance, and provides a global access point to it.
 
 * java.lang.Runtime.getRuntime()
 ```
