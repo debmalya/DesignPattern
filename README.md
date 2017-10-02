@@ -2,6 +2,10 @@
 * Design Pattern , from the book 'Head-First-Design-Pattern'. 
 * From the course "From the course: Programming Foundations: Design Patterns", provided by LinkedIn Learning.
 
+Design pattern is a solution to a problem in a context.
+Context is the situation where design pattern applies.
+Solution is a design that resolves the problem.
+
 ## Design Pattern In Java SE 8  [1.8.0_91]
 ### Creational
 How objects will be created ?
@@ -9,8 +13,15 @@ How objects will be created ?
 #### Singleton
 
 Only will have one instance of the class across JVM. One JVM only one instance of the class.
+This pattern ensures a class has only one instance, and provides a global access point to it.
 
-* java.lang.Runtime.getRuntime()
+Where it is used ?
+* Connection and Thread pool.
+* Logger.
+* Drivers (Graphics, Database )
+* Preference and registry object.
+
+##### java.lang.Runtime.getRuntime()
 ```
 private static Runtime currentRuntime = new Runtime();
 
@@ -30,7 +41,7 @@ private static Runtime currentRuntime = new Runtime();
     private Runtime() {}
 
 ```
-* java.awt.Desktop.getDeskTop()
+##### java.awt.Desktop.getDeskTop()
 ```
 private DesktopPeer peer;
 
@@ -340,9 +351,68 @@ Cloned to produce new objects
 * java.io.InputStream, OutputStream, Reader, Writer, 
 * java.util.Collections.synchronizedXXX() and unmodifiableXXX()
 
-** FileInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberReader.read()
+** FilterInputStream.read() -> Decorated with buffer in BufferedInputStream.read() -> then further decorated in LineNumberInputStream.read()
+
+![GitHub Logo](./docs/img/DecoratorPattern.png)
+
+
+FilterInputStream.read() method is defined as 
 ```
     /**
+     * Reads the next byte of data from this input stream. The value
+     * byte is returned as an <code>int</code> in the range
+     * <code>0</code> to <code>255</code>. If no byte is available
+     * because the end of the stream has been reached, the value
+     * <code>-1</code> is returned. This method blocks until input data
+     * is available, the end of the stream is detected, or an exception
+     * is thrown.
+     * <p>
+     * This method
+     * simply performs <code>in.read()</code> and returns the result.
+     *
+     * @return     the next byte of data, or <code>-1</code> if the end of the
+     *             stream is reached.
+     * @exception  IOException  if an I/O error occurs.
+     * @see        java.io.FilterInputStream#in
+     */
+    public int read() throws IOException {
+        return in.read();
+    }
+```
+Here in is defined as 
+```
+    /**
+     * The input stream to be filtered.
+     */
+    protected volatile InputStream in;
+```
+BufferedInputStream.read method
+```
+    /**
+     * See
+     * the general contract of the <code>read</code>
+     * method of <code>InputStream</code>.
+     *
+     * @return     the next byte of data, or <code>-1</code> if the end of the
+     *             stream is reached.
+     * @exception  IOException  if this input stream has been closed by
+     *                          invoking its {@link #close()} method,
+     *                          or an I/O error occurs.
+     * @see        java.io.FilterInputStream#in
+     */
+    public synchronized int read() throws IOException {
+        if (pos >= count) {
+            fill();
+            if (pos >= count)
+                return -1;
+        }
+        return getBufIfOpen()[pos++] & 0xff;
+    }
+```
+
+LineNumberInputStream.read() method
+```
+      /**
      * Reads the next byte of data from this input stream. The value
      * byte is returned as an {@code int} in the range
      * {@code 0} to {@code 255}. If no byte is available
@@ -389,6 +459,8 @@ Cloned to produce new objects
     }
 ```
 
+
+
 #### Facade
 * javax.faces.context.FacesContext
 * Flyweight
@@ -409,14 +481,17 @@ Cloned to produce new objects
 * javax.text.Format
 * javax.el.ELResolver
 #### Iterator
-* java.util.Iterator
-* java.util.Enumeration
+This pattern allows to access elements over collection of complex objects sequentially, without knowing the inner detials of the object.
+
+##### java.util.Iterator
+
+##### java.util.Enumeration
 
 #### Mediator
-* java.util.Timer
-* java.util.concurrent.Executor.execute
-* java.util.concurrent.ExecutorService (the invokeXXX and submit methods)
-* java.lang.reflect.Method.invoke
+##### java.util.Timer
+##### java.util.concurrent.Executor.execute
+##### java.util.concurrent.ExecutorService (the invokeXXX and submit methods)
+##### java.lang.reflect.Method.invoke
 #### Momento
 * java.util.Date
 * java.io.Serializable
@@ -428,8 +503,10 @@ Cloned to produce new objects
 * javax.servlet.http.HttpSessionAttributeListener
 * javax.faces.event.PhaseListener
 #### State
-* All implementations of java.util.Iterator
-* javax.faces.LifeCycle.execute
+Allows an object to change its behaviour when the internal state changes. 
+Using with state constantans, the state machines are implemented. State implemented as an object.
+##### All implementations of java.util.Iterator
+##### javax.faces.LifeCycle.execute
 #### Strategy
 * java.util.Comparator.compare(), executed by among others Collections.sort()
 * javax.servlet.http.HttpServlet the service and doXXX() methods
@@ -446,4 +523,11 @@ Cloned to produce new objects
 #### Marker Interface / Tagging interface Pattern
 * Serializable, Cloneable, 
 
+#### Compound design pattern
+Consists of more than one design pattern
+##### MVC (Model View Controller)
+It's combination of Strategy, Observer, Composite.
+## Design Principles
+* Open closed principle : Open for extension, close for modification. 
+* Program to interface
 
