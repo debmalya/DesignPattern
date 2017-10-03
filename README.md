@@ -205,6 +205,33 @@ In this example below, Timezone.getDefault() and Locale.getDefault(...) method e
 
 ```
 * java.util.ResourceBundle.getBundle()
+```
+    /**
+     * Gets a resource bundle using the specified base name, the default locale,
+     * and the caller's class loader. Calling this method is equivalent to calling
+     * <blockquote>
+     * <code>getBundle(baseName, Locale.getDefault(), this.getClass().getClassLoader())</code>,
+     * </blockquote>
+     * except that <code>getClassLoader()</code> is run with the security
+     * privileges of <code>ResourceBundle</code>.
+     * See {@link #getBundle(String, Locale, ClassLoader) getBundle}
+     * for a complete description of the search and instantiation strategy.
+     *
+     * @param baseName the base name of the resource bundle, a fully qualified class name
+     * @exception java.lang.NullPointerException
+     *     if <code>baseName</code> is <code>null</code>
+     * @exception MissingResourceException
+     *     if no resource bundle for the specified base name can be found
+     * @return a resource bundle for the given base name and the default locale
+     */
+    @CallerSensitive
+    public static final ResourceBundle getBundle(String baseName)
+    {
+        return getBundleImpl(baseName, Locale.getDefault(),
+                             getLoader(Reflection.getCallerClass()),
+                             getDefaultControl(baseName));
+    }
+```
 * java.sql.DriverManager.getConnection()
 * java.sql.Statement.executeQuery()
 * java.text.NumberFormat.getInstance()
