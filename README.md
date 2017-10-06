@@ -236,6 +236,125 @@ In this example below, Timezone.getDefault() and Locale.getDefault(...) method e
 * java.sql.Statement.executeQuery()
 * java.text.NumberFormat.getInstance()
 * java.lang.management.ManagementFactory
+```
+    /**
+     * The domain name and the type key property in
+     * the <tt>ObjectName</tt> for a {@link MemoryPoolMXBean}.
+     * The unique <tt>ObjectName</tt> for a <tt>MemoryPoolMXBean</tt>
+     * can be formed by appending this string with
+     * <tt>,name=</tt><i>pool's name</i>.
+     */
+    public final static String MEMORY_POOL_MXBEAN_DOMAIN_TYPE=
+        "java.lang:type=MemoryPool";
+
+    /**
+     * Returns the managed bean for the class loading system of
+     * the Java virtual machine.
+     *
+     * @return a {@link ClassLoadingMXBean} object for
+     * the Java virtual machine.
+     */
+    public static ClassLoadingMXBean getClassLoadingMXBean() {
+        return ManagementFactoryHelper.getClassLoadingMXBean();
+    }
+
+    /**
+     * Returns the managed bean for the memory system of
+     * the Java virtual machine.
+     *
+     * @return a {@link MemoryMXBean} object for the Java virtual machine.
+     */
+    public static MemoryMXBean getMemoryMXBean() {
+        return ManagementFactoryHelper.getMemoryMXBean();
+    }
+
+    /**
+     * Returns the managed bean for the thread system of
+     * the Java virtual machine.
+     *
+     * @return a {@link ThreadMXBean} object for the Java virtual machine.
+     */
+    public static ThreadMXBean getThreadMXBean() {
+        return ManagementFactoryHelper.getThreadMXBean();
+    }
+
+    /**
+     * Returns the managed bean for the runtime system of
+     * the Java virtual machine.
+     *
+     * @return a {@link RuntimeMXBean} object for the Java virtual machine.
+
+     */
+    public static RuntimeMXBean getRuntimeMXBean() {
+        return ManagementFactoryHelper.getRuntimeMXBean();
+    }
+
+    /**
+     * Returns the managed bean for the compilation system of
+     * the Java virtual machine.  This method returns <tt>null</tt>
+     * if the Java virtual machine has no compilation system.
+     *
+     * @return a {@link CompilationMXBean} object for the Java virtual
+     *   machine or <tt>null</tt> if the Java virtual machine has
+     *   no compilation system.
+     */
+    public static CompilationMXBean getCompilationMXBean() {
+        return ManagementFactoryHelper.getCompilationMXBean();
+    }
+
+    /**
+     * Returns the managed bean for the operating system on which
+     * the Java virtual machine is running.
+     *
+     * @return an {@link OperatingSystemMXBean} object for
+     * the Java virtual machine.
+     */
+    public static OperatingSystemMXBean getOperatingSystemMXBean() {
+        return ManagementFactoryHelper.getOperatingSystemMXBean();
+    }
+
+    /**
+     * Returns a list of {@link MemoryPoolMXBean} objects in the
+     * Java virtual machine.
+     * The Java virtual machine can have one or more memory pools.
+     * It may add or remove memory pools during execution.
+     *
+     * @return a list of <tt>MemoryPoolMXBean</tt> objects.
+     *
+     */
+    public static List<MemoryPoolMXBean> getMemoryPoolMXBeans() {
+        return ManagementFactoryHelper.getMemoryPoolMXBeans();
+    }
+
+    /**
+     * Returns a list of {@link MemoryManagerMXBean} objects
+     * in the Java virtual machine.
+     * The Java virtual machine can have one or more memory managers.
+     * It may add or remove memory managers during execution.
+     *
+     * @return a list of <tt>MemoryManagerMXBean</tt> objects.
+     *
+     */
+    public static List<MemoryManagerMXBean> getMemoryManagerMXBeans() {
+        return ManagementFactoryHelper.getMemoryManagerMXBeans();
+    }
+
+
+    /**
+     * Returns a list of {@link GarbageCollectorMXBean} objects
+     * in the Java virtual machine.
+     * The Java virtual machine may have one or more
+     * <tt>GarbageCollectorMXBean</tt> objects.
+     * It may add or remove <tt>GarbageCollectorMXBean</tt>
+     * during execution.
+     *
+     * @return a list of <tt>GarbageCollectorMXBean</tt> objects.
+     *
+     */
+    public static List<GarbageCollectorMXBean> getGarbageCollectorMXBeans() {
+        return ManagementFactoryHelper.getGarbageCollectorMXBeans();
+    }
+```
 * java.nio.charset.Charset.forName()
 * javax.xml.parsers.DocumentBuilderFactory.newInstance()
 * javax.xml.transform.TransformerFactory.newInstance()
