@@ -235,6 +235,20 @@ In this example below, Timezone.getDefault() and Locale.getDefault(...) method e
 * java.sql.DriverManager.getConnection()
 * java.sql.Statement.executeQuery()
 * java.text.NumberFormat.getInstance()
+```
+ /**
+     * Returns a general-purpose number format for the current default
+     * {@link java.util.Locale.Category#FORMAT FORMAT} locale.
+     * This is the same as calling
+     * {@link #getNumberInstance() getNumberInstance()}.
+     *
+     * @return the {@code NumberFormat} instance for general-purpose number
+     * formatting
+     */
+    public final static NumberFormat getInstance() {
+        return getInstance(Locale.getDefault(Locale.Category.FORMAT), NUMBERSTYLE);
+    }
+```
 * java.lang.management.ManagementFactory
 ```
     /**
