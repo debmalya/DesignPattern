@@ -433,6 +433,68 @@ In this example below, Timezone.getDefault() and Locale.getDefault(...) method e
     }
 ```
 * java.nio.charset.Charset.forName()
+```
+ /**
+     * Returns a charset object for the named charset. </p>
+     *
+     * @param  charsetName
+     *         The name of the requested charset; may be either
+     *         a canonical name or an alias
+     *
+     * @return  A charset object for the named charset
+     *
+     * @throws  IllegalCharsetNameException
+     *          If the given charset name is illegal
+     *
+     * @throws  IllegalArgumentException
+     *          If the given <tt>charsetName</tt> is null
+     *
+     * @throws  UnsupportedCharsetException
+     *          If no support for the named charset is available
+     *          in this instance of the Java virtual machine
+     */
+    public static Charset forName(String charsetName) {
+        Charset cs = lookup(charsetName);
+        if (cs != null)
+            return cs;
+        throw new UnsupportedCharsetException(charsetName);
+    }
+
+private static Charset lookup(String charsetName) {
+        if (charsetName == null)
+            throw new IllegalArgumentException("Null charset name");
+
+        Object[] a;
+        if ((a = cache1) != null && charsetName.equals(a[0]))
+            return (Charset)a[1];
+        // We expect most programs to use one Charset repeatedly.
+        // We convey a hint to this effect to the VM by putting the
+        // level 1 cache miss code in a separate method.
+        return lookup2(charsetName);
+    }
+
+    private static Charset lookup2(String charsetName) {
+        Object[] a;
+        if ((a = cache2) != null && charsetName.equals(a[0])) {
+            cache2 = cache1;
+            cache1 = a;
+            return (Charset)a[1];
+        }
+
+        Charset cs;
+        if ((cs = standardProvider.charsetForName(charsetName)) != null ||
+            (cs = lookupExtendedCharset(charsetName))           != null ||
+            (cs = lookupViaProviders(charsetName))              != null)
+        {
+            cache(charsetName, cs);
+            return cs;
+        }
+
+        /* Only need to check the name if we didn't find a charset for it */
+        checkName(charsetName);
+        return null;
+    }
+```
 * javax.xml.parsers.DocumentBuilderFactory.newInstance()
 * javax.xml.transform.TransformerFactory.newInstance()
 * javax.xml.parsers.DocumentBuilderFactory.newInstance()
